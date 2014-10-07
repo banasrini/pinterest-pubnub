@@ -36,12 +36,14 @@ statusarray = []
 result = []
 new_result = []
 
+#Parses the RSS
 def init_parse(rss):
     feedurl = feedparser.parse(rss)
     for entry in feedurl.entries:
         statusarray.append(entry)
     return feedurl
 
+#Extracting just the img and 'a' tags
 def extract_img(statusarray):
     for r in statusarray:
         statusupdate = r.summary_detail.value
@@ -51,7 +53,8 @@ def extract_img(statusarray):
             post["imgs"] = (soup.find("img")["src"])
             post["links"] = (soup.find("a")["href"])
             result.append(post)
-
+            
+# creating a unique list without any duplicates
     for x in result:
         if x not in new_result:
             new_result.append(x)
