@@ -78,16 +78,13 @@ if __name__ == "__main__":
     except Exception as ex:
         print("Something went wrong because of => " + str(ex))
     
-    # time to wait in between checking rss feed    
-    INTERVAL = 100
 
     while True:
-
         init_parse(rss)
         extract_img(statusarray)
         for message in new_result:
             pinstream.send(CHANNEL, message)
-            time.sleep(INTERVAL)
+            
 
 
 
